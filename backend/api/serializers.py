@@ -1,11 +1,11 @@
 from rest_framework import serializers
-from .models import BaseURL, RedirectURL
+from .models import Code, RedirectURL
 
 
 
-class BaseURLSerializer(serializers.ModelSerializer):
+class CodeSerializer(serializers.ModelSerializer):
     class Meta:
-        model = BaseURL
+        model = Code
         fields = "__all__"
         
         

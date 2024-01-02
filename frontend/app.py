@@ -30,7 +30,7 @@ custom_html = """
 </style>
 """
 # Display the custom HTML
-st.components.v1.html(custom_html)
+# st.components.v1.html(custom_html)
 
 
 #get the id of the menu item clicked
@@ -43,7 +43,7 @@ st.header("FRONTEND")
 
 
 
-resp = requests.get("http://127.0.0.1:8000/api/base-url/")
+resp = requests.get("http://127.0.0.1:8000/api/code/")
 st.json(resp.json())
 
 
@@ -54,5 +54,5 @@ with st.form("POST FORM"):
     password = st.text_input(placeholder="Password", type="password", label="Password")
     if st.form_submit_button("Submit"):
         st.success("test")
-        requests.post("http://127.0.0.1:8000/api/base-url/", data={"base_url":base_url,"short_code":code})
+        requests.post("http://127.0.0.1:8000/api/code/", data={"base_url":base_url,"short_code":code})
     

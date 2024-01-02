@@ -20,29 +20,21 @@ ORDERS = [
 ]
 
 
-class Profil(models.Model):
-    user = models.OneToOneField(
-        User,
-        on_delete=models.CASCADE,
-        related_name="profil",
-    )
+# class Profil(User):
+#     status = models.CharField(max_length=10,
+#                                 choices=STATUS,
+#                                 default="Normal",
+#                                )
+#     class Meta:
+#         verbose_name = "Profil"
+#         verbose_name_plural = "Profils"
 
-    status = models.CharField(max_length=10,
-                              choices=STATUS,
-                              default="Normal",
-                              )
-    created_at = models.DateTimeField(auto_now_add=True)
-    updated_at = models.DateTimeField(auto_now=True)
-
-    class Meta:
-        verbose_name = "User"
-        verbose_name_plural = "Users"
-
-    def __str__(self):
-        return self.user.username
+#     def __str__(self):
+#         return self.username
 
 
-class BaseURL(models.Model):
+class Code(models.Model):
+    owner = models.ForeignKey(User, on_delete=models.CASCADE)
     base_url = models.CharField(max_length=1000)
     short_code = models.CharField(max_length=50)
     total_click = models.IntegerField(default=0)
@@ -52,16 +44,16 @@ class BaseURL(models.Model):
     updated_at = models.DateTimeField(auto_now=True)
 
     class Meta:
-        verbose_name = "BaseURL"
-        verbose_name_plural = "BaseURLs"
+        verbose_name = "Code"
+        verbose_name_plural = "Codes"
 
     def __str__(self):
         return self.base_url
 
 
 class RedirectURL(models.Model):
-    base_url = models.ForeignKey(
-        BaseURL, on_delete=models.CASCADE, related_name="redirect_url")
+    code = models.ForeignKey(
+        Code, on_delete=models.CASCADE, related_name="code")
     redirect_url = models.CharField(max_length=1000)
     total_redirect = models.IntegerField(default=0)
     created_at = models.DateTimeField(auto_now_add=True)

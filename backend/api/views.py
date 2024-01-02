@@ -1,18 +1,18 @@
 from rest_framework.generics import ListCreateAPIView, RetrieveUpdateDestroyAPIView
-from .serializers import BaseURLSerializer, RedirectURLSerializer
-from .models import BaseURL, RedirectURL
+from .serializers import CodeSerializer, RedirectURLSerializer
+from .models import Code, RedirectURL
 from rest_framework.authtoken.models import Token
 # Create your views here.
 
 
-class BaseURLListCreateView(ListCreateAPIView):
-    queryset = BaseURL.objects.all()
-    serializer_class = BaseURLSerializer
+class CodeListCreateView(ListCreateAPIView):
+    queryset = Code.objects.all()
+    serializer_class = CodeSerializer
     
     
-class BaseURLRetrieveUpdateDestroyView(RetrieveUpdateDestroyAPIView):
-    queryset = BaseURL.objects.all()
-    serializer_class = BaseURLSerializer
+class BCodeRetrieveUpdateDestroyView(RetrieveUpdateDestroyAPIView):
+    queryset = Code.objects.all()
+    serializer_class = CodeSerializer
     lookup_field = "pk"
     
     
